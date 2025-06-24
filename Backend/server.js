@@ -14,8 +14,8 @@ dot.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // your React frontend
-  credentials: true               // allow sending cookies
+  origin: "http://localhost:5173", 
+  credentials: true               
 }));
 
 
