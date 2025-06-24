@@ -11,10 +11,7 @@ const createPassword = async (req, res) => {
   const { url, username, password } = req.body;
 
   try {
-    const isUrl = await Password.findOne({ url });
-    if (isUrl) {
-      return res.status(400).json({ message: "Url Already Exists!" });
-    }
+    
     const passwordData = await Password.create({
       url,
       username,

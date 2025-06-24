@@ -31,8 +31,10 @@ const Signup = () => {
       );
       let userData = response.data.user;
       setUser(userData);
-      navigate("/user/login");
+      navigate("/");
     } catch (error) {
+      let validatorError = error.response.data.error;
+      toast.error(validatorError)
       let errorMessage = error.response.data.message;
       toast.error(errorMessage);
     }

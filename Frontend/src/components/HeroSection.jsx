@@ -35,7 +35,7 @@ function HeroSection() {
       const passwordData = response.data;
       setPassword((prev) => [...prev, passwordData]);
       setData({ url: "", username: "", password: "" });
-      toast.success("Password Saved!!");
+      toast.success("Password Saved!!",{autoClose:2000});
     } catch (error) {
       let errorMessage = error.response.data.message;
       toast.error(errorMessage,{autoClose:2500});

@@ -1,9 +1,15 @@
+import { validationResult } from "express-validator";
 import Password from "../models/password.model.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
 const signup = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const firstError = errors.array()[0].msg;
+      return res.status(400).json({ error: firstError });
+    }
     const { username, email, password } = req.body;
 
     const existingUser = await User.findOne({ username });
@@ -16,7 +22,15 @@ const signup = async (req, res) => {
     user.password = await user.hashPassword(password);
 
     const userData = await user.save();
-
+    console.log(userData);
+    let userPayload = {
+      id: userData._id,
+      username: userData.username,
+    };
+    let token = jwt.sign(userPayload, process.env.JWT_KEY, {
+      expiresIn: "24h",
+    });
+    res.cookie("token", token);
     return res.status(201).json({ message: "User registered", user: userData });
   } catch (error) {
     console.error("Signup Error:", error);
@@ -68,7 +82,7 @@ const verify = async (req, res) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_KEY);
     const userData = await User.findById(decoded.id);
-    const passwordData = await Password.find({userId:userData._id});
+    const passwordData = await Password.find({ userId: userData._id });
     console.log(`${passwordData}`);
     req.user = userData;
     res.status(200).json({ user: userData, password: passwordData });
