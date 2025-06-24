@@ -36,6 +36,7 @@ PassOP is a secure and user-friendly password manager application that helps use
 ## 📦 Project Structure
 
 /Fronted --> React Frontend
+
 /Backend --> Express Backend
 ├── controllers/
 ├── models/
