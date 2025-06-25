@@ -12,9 +12,12 @@ const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        let response = await axios.get("http://localhost:3000/user/verify", {
-          withCredentials: true,
-        });
+        let response = await axios.get(
+          `${import.meta.env.REACT_BASEURL}/user/verify`,
+          {
+            withCredentials: true,
+          }
+        );
         let data = response.data.user;
         setUser(data);
       } catch (err) {
