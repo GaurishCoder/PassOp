@@ -2,6 +2,7 @@ import { validationResult } from "express-validator";
 import Password from "../models/password.model.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt"
 
 const signup = async (req, res) => {
   try {
@@ -19,7 +20,8 @@ const signup = async (req, res) => {
 
     const user = new User({ username, email });
 
-    user.password = await user.hashPassword(password);
+    user.password = await bcrypt.hash(password, 10);
+
 
     const userData = await user.save();
     
