@@ -24,7 +24,7 @@ function Table() {
   };
 
   const handleEditClick = async (entry) => {
-    await axios.get(`${import.meta.env.REACT_BASEURL}/password/edit`, {
+    await axios.get(`${import.meta.env.VITE_REACT_BASEURL}/password/edit`, {
       params: { id: entry._id },
     });
 
@@ -44,7 +44,7 @@ function Table() {
   const handleUpdate = async (id) => {
     try {
       const res = await axios.put(
-        `${import.meta.env.REACT_BASEURL}/password/edit/${id}`,
+        `${import.meta.env.VITE_REACT_BASEURL}/password/edit/${id}`,
         formData,
         { withCredentials: true }
       );
@@ -53,7 +53,7 @@ function Table() {
         u._id === id ? updatedEntry : u
       );
       setPassword(updatedUser);
-      toast.success("Password Updated!!");
+      toast.success("Password Updated!!",{autoClose:2000});
       handleCancel();
     } catch (error) {
       toast.error("Failed to update");
@@ -63,7 +63,7 @@ function Table() {
 
   const handleDeleteBtn = async (id) => {
     const res = await axios.delete(
-      `${import.meta.env.REACT_BASEURL}/password/delete/${id}`,
+      `${import.meta.env.VITE_REACT_BASEURL}/password/delete/${id}`,
       { withCredentials: true }
     );
     let data = password.filter((e) => e._id !== id);
@@ -154,7 +154,7 @@ function Table() {
                     </>
                   ) : (
                     <>
-                      <td className="text-center break-all px-2 py-1">
+                      <td className="text-center word-break px-2 py-1 text-sm md:text-base">
                         <a
                           target="_blank"
                           href={entry?.url}
@@ -168,21 +168,21 @@ function Table() {
                           onClick={() => copyItem(entry?.url)}
                         ></i>
                       </td>
-                      <td className="text-center break-all px-2 py-1">
+                      <td className="text-center break-all px-2 py-1  text-sm md:text-base">
                         {entry?.username}
                         <i
                           className="ri-file-copy-2-line ml-2 cursor-pointer"
                           onClick={() => copyItem(entry?.username)}
                         ></i>
                       </td>
-                      <td className="text-center break-all px-2 py-1">
+                      <td className="text-center break-all px-2 py-1  text-sm md:text-base">
                         {entry?.password}
                         <i
                           className="ri-file-copy-2-line ml-2 cursor-pointer"
                           onClick={() => copyItem(entry?.password)}
                         ></i>
                       </td>
-                      <td className="text-center break-all px-2 py-1">
+                      <td className="text-center break-all px-2 py-1  text-sm md:text-base">
                         <span
                           className="mx-1 cursor-pointer"
                           onClick={() => handleEditClick(entry)}

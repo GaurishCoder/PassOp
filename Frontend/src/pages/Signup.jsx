@@ -23,7 +23,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       let response = await axios.post(
-        `${import.meta.env.REACT_BASEURL}/user/signup`,
+        `${import.meta.env.VITE_REACT_BASEURL}/user/signup`,
         data,
         {
           withCredentials: true,

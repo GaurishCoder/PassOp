@@ -13,7 +13,7 @@ const UserContextProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         let response = await axios.get(
-          `${import.meta.env.REACT_BASEURL}/user/verify`,
+          `${import.meta.env.VITE_REACT_BASEURL}/user/verify`,
           {
             withCredentials: true,
           }

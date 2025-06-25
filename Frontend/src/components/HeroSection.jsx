@@ -26,19 +26,23 @@ function HeroSection() {
 
   const handleData = async () => {
     try {
+      if (!user || !user.username) {
+        toast.error("User not logged in!");
+        return;
+      }
       data.username = user.username;
       const response = await axios.post(
-      `${import.meta.env.REACT_BASEURL}/password`,
+        `${import.meta.env.VITE_REACT_BASEURL}/password`,
         data,
         { withCredentials: true }
       );
       const passwordData = response.data;
       setPassword((prev) => [...prev, passwordData]);
       setData({ url: "", username: "", password: "" });
-      toast.success("Password Saved!!",{autoClose:2000});
+      toast.success("Password Saved!!", { autoClose: 2000 });
     } catch (error) {
       let errorMessage = error.response.data.message;
-      toast.error(errorMessage,{autoClose:2500});
+      toast.error(errorMessage, { autoClose: 2500 });
     }
   };
 
@@ -76,8 +80,7 @@ function HeroSection() {
               placeholder="Username"
               name="username"
               onChange={handleChange}
-              value={user.username || ""}
-              
+              value={user?.username || ""}
               className="border w-full  md:w-4/5 rounded-full px-3 py-1 border-green-500 outline-green-500 "
             />
             <div className="relative md:1/4 ">

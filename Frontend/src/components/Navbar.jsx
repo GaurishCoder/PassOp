@@ -7,10 +7,11 @@ import { toast } from "react-toastify";
 
 function Navbar() {
   const { user } = useContext(UserContext);
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     await axios.post(
-      `${import.meta.env.REACT_BASEURL}/user/logout`,
+      `${import.meta.env.VITE_REACT_BASEURL}/user/logout`,
       {},
       { withCredentials: true }
     );

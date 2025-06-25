@@ -12,7 +12,7 @@ const PasswordContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        let response = await axios.get(`${import.meta.env.REACT_BASEURL}/user/verify`, {
+        let response = await axios.get(`${import.meta.env.VITE_REACT_BASEURL}/user/verify`, {
           withCredentials: true,
         });
         let data = response.data.password;
