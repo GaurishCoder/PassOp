@@ -10,13 +10,15 @@ const Port = 3000;
 const app = express();
 dot.config();
 
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://pass-op-frontend-ten.vercel.app" // deployed frontend
+  "http://localhost:5173",
+  "https://pass-op-frontend-ten.vercel.app"
 ];
+
+app.use((req, res, next) => {
+  console.log("Request Origin:", req.headers.origin);
+  next();
+});
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -29,18 +31,17 @@ app.use(cors({
   credentials: true
 }));
 
-
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
-app.use("/", passwordRoutes);
-app.use("/user" , userRoutes);
 
+app.use("/", passwordRoutes);
+app.use("/user", userRoutes);
 
 connectDB()
-.then(() => console.log(`DB Connection Successfull`))
-.catch((err) => console.log(`${err}`));
-
+  .then(() => console.log(`DB Connection Successful`))
+  .catch((err) => console.log(`${err}`));
 
 app.listen(Port, () => {
-  console.log(`Server is listing at ${Port}`);
+  console.log(`Server is listening at ${Port}`);
 });
