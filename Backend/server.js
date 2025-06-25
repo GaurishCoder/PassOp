@@ -14,7 +14,7 @@ dot.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: `${import.meta.env.VITE_REACT_BASEURL}`, 
+  origin:"https://pass-op-frontend-ten.vercel.app/", 
   credentials: true               
 }));
 
