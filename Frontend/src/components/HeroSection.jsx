@@ -80,7 +80,7 @@ function HeroSection() {
               placeholder="Username"
               name="username"
               onChange={handleChange}
-              value={user?.username || ""}
+              value={user?.username}
               className="border w-full  md:w-4/5 rounded-full px-3 py-1 border-green-500 outline-green-500 "
             />
             <div className="relative md:1/4 ">
