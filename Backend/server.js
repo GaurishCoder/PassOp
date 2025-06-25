@@ -10,26 +10,14 @@ const Port = 3000;
 const app = express();
 dot.config();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://pass-op-frontend-ten.vercel.app"
-];
 
 app.use((req, res, next) => {
   console.log("Request Origin:", req.headers.origin);
   next();
 });
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+app.use(cors({ origin: true, credentials: true }));
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
