@@ -22,7 +22,7 @@ const signup = async (req, res) => {
     user.password = await user.hashPassword(password);
 
     const userData = await user.save();
-    console.log(userData);
+    
     let userPayload = {
       id: userData._id,
       username: userData.username,
@@ -83,7 +83,6 @@ const verify = async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_KEY);
     const userData = await User.findById(decoded.id);
     const passwordData = await Password.find({ userId: userData._id });
-    console.log(`${passwordData}`);
     req.user = userData;
     res.status(200).json({ user: userData, password: passwordData });
   } catch (error) {

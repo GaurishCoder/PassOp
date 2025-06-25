@@ -77,10 +77,10 @@ function HeroSection() {
           <div className="input flex md:flex-row flex-col md:gap-2 gap-5  relative ">
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Enter Username"
               name="username"
               onChange={handleChange}
-              value={user?.username}
+              value={user?.username || data?.username}
               className="border w-full  md:w-4/5 rounded-full px-3 py-1 border-green-500 outline-green-500 "
             />
             <div className="relative md:1/4 ">
