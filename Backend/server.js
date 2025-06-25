@@ -13,10 +13,22 @@ dot.config();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://pass-op-frontend-ten.vercel.app" // deployed frontend
+];
+
 app.use(cors({
-  origin:"https://pass-op-frontend-ten.vercel.app/", 
-  credentials: true               
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
+
 
 
 app.use(cookieParser());
