@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 
 const renderHome = (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "Fronted", "index.html")).status(200);
+  res.status(200).send("Welcome to home");
 };
 
 const createPassword = async (req, res) => {
