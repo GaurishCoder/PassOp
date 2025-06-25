@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       let response = await axios.post(
-        "http://localhost:3000/user/login",
+        `${import.meta.env.REACT_BASEURL}/user/login`,
         data,
         {
           withCredentials: true,
@@ -41,7 +41,6 @@ const Login = () => {
   };
   return (
     <div className="min-h-screen bg-green-50 flex p-2 flex-col items-center justify-center">
-     
       <NavLink to="/">
         <div className="text-3xl font-bold mb-8 text-center text-green-900">
           &lt;<span className="text-green-600">Pass</span>OP/&gt;
@@ -85,7 +84,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={2000}
         hideProgressBar={false}

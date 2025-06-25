@@ -10,7 +10,7 @@ function Navbar() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     await axios.post(
-      "http://localhost:3000/user/logout",
+      `${import.meta.env.REACT_BASEURL}/user/logout`,
       {},
       { withCredentials: true }
     );

@@ -28,7 +28,7 @@ function HeroSection() {
     try {
       data.username = user.username;
       const response = await axios.post(
-        "http://localhost:3000/password",
+      `${import.meta.env.REACT_BASEURL}/password`,
         data,
         { withCredentials: true }
       );

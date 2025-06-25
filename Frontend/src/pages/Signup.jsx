@@ -23,7 +23,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       let response = await axios.post(
-        "http://localhost:3000/user/signup",
+        `${import.meta.env.REACT_BASEURL}/user/signup`,
         data,
         {
           withCredentials: true,
@@ -34,7 +34,7 @@ const Signup = () => {
       navigate("/");
     } catch (error) {
       let validatorError = error.response.data.error;
-      toast.error(validatorError)
+      toast.error(validatorError);
       let errorMessage = error.response.data.message;
       toast.error(errorMessage);
     }

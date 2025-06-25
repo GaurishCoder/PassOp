@@ -24,7 +24,7 @@ function Table() {
   };
 
   const handleEditClick = async (entry) => {
-    await axios.get("http://localhost:3000/password/edit", {
+    await axios.get(`${import.meta.env.REACT_BASEURL}/password/edit`, {
       params: { id: entry._id },
     });
 
@@ -44,7 +44,7 @@ function Table() {
   const handleUpdate = async (id) => {
     try {
       const res = await axios.put(
-        `http://localhost:3000/password/edit/${id}`,
+        `${import.meta.env.REACT_BASEURL}/password/edit/${id}`,
         formData,
         { withCredentials: true }
       );
@@ -63,7 +63,7 @@ function Table() {
 
   const handleDeleteBtn = async (id) => {
     const res = await axios.delete(
-      `http://localhost:3000/password/delete/${id}`,
+      `${import.meta.env.REACT_BASEURL}/password/delete/${id}`,
       { withCredentials: true }
     );
     let data = password.filter((e) => e._id !== id);
