@@ -34,6 +34,7 @@ const Signup = () => {
       navigate("/");
     } catch (error) {
       let validatorError = error.response.data.error;
+      console.log(error)
       toast.error(validatorError);
       let errorMessage = error.response.data.message;
       toast.error(errorMessage);
