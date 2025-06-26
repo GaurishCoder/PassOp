@@ -1,8 +1,8 @@
 import { validationResult } from "express-validator";
 import Password from "../models/password.model.js";
-import User from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 const signup = async (req, res) => {
   try {
@@ -12,6 +12,7 @@ const signup = async (req, res) => {
       return res.status(400).json({ error: firstError });
     }
     const { username, email, password } = req.body;
+    console.log("✅ Signup route hit");
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
@@ -22,9 +23,8 @@ const signup = async (req, res) => {
 
     user.password = await bcrypt.hash(password, 10);
 
-
     const userData = await user.save();
-    
+
     let userPayload = {
       id: userData._id,
       username: userData.username,
@@ -36,7 +36,7 @@ const signup = async (req, res) => {
     return res.status(201).json({ message: "User registered", user: userData });
   } catch (error) {
     console.error("Signup Error:", error);
-    return res.status(500).json({ error:"Database Error", error });
+    return res.status(500).json({ error: "Database Error", error });
   }
 };
 

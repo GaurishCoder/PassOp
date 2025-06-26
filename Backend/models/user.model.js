@@ -36,6 +36,4 @@ userSchema.methods.generateToken = function (userPayload) {
 };
 
 // ✅ Now create the model
-const User = mongoose.model("User", userSchema);
-
-export default User;
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
