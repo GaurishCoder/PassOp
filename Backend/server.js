@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 const corsOption={
-  origin:process.env.FRONTEND_URL,
+  origin:[process.env.FRONTEND_URL,"https://pass-op-frontend-sable.vercel.app"],
   credentials:true,
   allowedHeaders:['Content-Type','Authorization']
 }
