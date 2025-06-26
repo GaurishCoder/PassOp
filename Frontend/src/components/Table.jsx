@@ -24,7 +24,7 @@ function Table() {
   };
 
   const handleEditClick = async (entry) => {
-    await axios.get(`${import.meta.env.VITE_REACT_BASEURL}/password/edit`, {
+    await axios.get(`${import.meta.env.VITE_BACKEND_URL}/password/edit`, {
       params: { id: entry._id },
     });
 
@@ -44,7 +44,7 @@ function Table() {
   const handleUpdate = async (id) => {
     try {
       const res = await axios.put(
-        `${import.meta.env.VITE_REACT_BASEURL}/password/edit/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/password/edit/${id}`,
         formData,
         { withCredentials: true }
       );
@@ -53,7 +53,7 @@ function Table() {
         u._id === id ? updatedEntry : u
       );
       setPassword(updatedUser);
-      toast.success("Password Updated!!",{autoClose:2000});
+      toast.success("Password Updated!!", { autoClose: 2000 });
       handleCancel();
     } catch (error) {
       toast.error("Failed to update");
@@ -63,7 +63,7 @@ function Table() {
 
   const handleDeleteBtn = async (id) => {
     const res = await axios.delete(
-      `${import.meta.env.VITE_REACT_BASEURL}/password/delete/${id}`,
+      `${import.meta.env.VITE_BACKEND_URL}/password/delete/${id}`,
       { withCredentials: true }
     );
     let data = password.filter((e) => e._id !== id);

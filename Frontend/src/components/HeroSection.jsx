@@ -32,7 +32,7 @@ function HeroSection() {
       }
       data.username = user.username;
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_BASEURL}/password`,
+        `${import.meta.env.VITE_BACKEND_URL}/password`,
         data,
         { withCredentials: true }
       );

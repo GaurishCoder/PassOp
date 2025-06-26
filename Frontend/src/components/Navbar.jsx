@@ -11,7 +11,7 @@ function Navbar() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     await axios.post(
-      `${import.meta.env.VITE_REACT_BASEURL}/user/logout`,
+      `${import.meta.env.VITE_BACKEND_URL}/user/logout`,
       {},
       { withCredentials: true }
     );

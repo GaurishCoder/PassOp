@@ -12,13 +12,14 @@ const PasswordContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        let response = await axios.get(`${import.meta.env.VITE_REACT_BASEURL}/user/verify`, {
-          withCredentials: true,
-        });
+        let response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/user/verify`,
+          {
+            withCredentials: true,
+          }
+        );
         let data = response.data.password;
         data.map((items) => setPassword((prev) => [...prev, items]));
-
-       
       } catch (err) {
         setPassword({});
       }

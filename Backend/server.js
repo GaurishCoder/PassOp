@@ -15,8 +15,12 @@ app.use((req, res, next) => {
   console.log("Request Origin:", req.headers.origin);
   next();
 });
-
-app.use(cors({ origin: true, credentials: true }));
+const corsOption={
+  origin:process.env.FRONTEND_URL,
+  credentials:true,
+  allowedHeaders:['Content-Type','Authorization']
+}
+app.use(cors(corsOption));
 
 
 app.use(express.urlencoded({ extended: true }));
