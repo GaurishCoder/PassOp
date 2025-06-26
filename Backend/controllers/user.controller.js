@@ -36,7 +36,7 @@ const signup = async (req, res) => {
     return res.status(201).json({ message: "User registered", user: userData });
   } catch (error) {
     console.error("Signup Error:", error);
-    res.status(500).json({ message: "Server error", error });
+    return res.status(500).json({ error:"Database Error", error });
   }
 };
 
