@@ -32,7 +32,12 @@ const signup = async (req, res) => {
     let token = jwt.sign(userPayload, process.env.JWT_KEY, {
       expiresIn: "24h",
     });
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    }); 
     return res.status(201).json({ message: "User registered", user: userData });
   } catch (error) {
     console.error("Signup Error:", error);
@@ -58,8 +63,8 @@ const login = async (req, res) => {
     let token = user.generateToken(userPayload);
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "Lax", // "Strict" or "None" if using cross-site cookies
-      secure: false, // true in production (HTTPS)
+      sameSite: "none",
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
 
