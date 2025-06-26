@@ -6,7 +6,7 @@ import { authMiddleware } from "../middleware/jwtAuth.js";
 
 router.get("/", PasswordController.renderHome);
 
-router.post("/password", PasswordController.createPassword);
+router.post("/password", authMiddleware, PasswordController.createPassword);
 
 router.get("/password/edit", PasswordController.renderEdit);
 
