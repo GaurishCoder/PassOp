@@ -35,7 +35,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       let errorMessage = error.response.data.message;
-      console.log(errorMessage);
+      console.log(error);
       toast.error(errorMessage, { autoClose: 2000 });
     }
   };
