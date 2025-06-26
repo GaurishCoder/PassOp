@@ -11,10 +11,7 @@ const app = express();
 dot.config();
 
 
-app.use((req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
-  next();
-});
+
 const corsOption={
   origin:[process.env.FRONTEND_URL,"https://pass-op-frontend-sable.vercel.app"],
   credentials:true,
@@ -30,6 +27,10 @@ app.use(cookieParser());
 
 app.use("/", passwordRoutes);
 app.use("/user", userRoutes);
+
+
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
 
 connectDB()
   .then(() => console.log(`DB Connection Successful`))
