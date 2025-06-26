@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 
 async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   } catch (error) {
     console.log(error);
   }
