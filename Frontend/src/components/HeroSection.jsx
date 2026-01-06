@@ -74,16 +74,16 @@ function HeroSection() {
               className="border w-full rounded-full px-3 py-1  border-green-500 outline-green-500 "
             />
           </div>
-          <div className="input flex md:flex-row flex-col md:gap-2 gap-5  relative ">
+          <div className="input flex  md:flex-row-reverse flex-col md:gap-2 gap-5  relative ">
             <input
               type="text"
               placeholder="Enter Username"
               name="username"
               onChange={handleChange}
               value={user?.username || data?.username}
-              className="border w-full  md:w-4/5 rounded-full px-3 py-1 border-green-500 outline-green-500 "
+              className="border w-full  md:w-[30%] rounded-full px-3 py-1 border-green-500 outline-green-500 "
             />
-            <div className="relative md:1/4 ">
+            <div className="relative md:w-full">
               <input
                 type={show ? "text" : "password"}
                 placeholder="Enter your password"
